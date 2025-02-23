@@ -1,10 +1,10 @@
-# currency-to-thb
+# KEE BAHT
 
-Currency Converter to Thai Baht
+KEE BAHT (กี่บาท) is a simple currency converter to Thai Baht.
 
 ## How to use?
 
-1. Change the currency `from` and `rate` in the URL.
+1. Change the currency via `from` and `rate` in the URL.
 
 Example:
 
@@ -12,7 +12,11 @@ Example:
 https://baht.seedwebs.com/?from=USD&rate=33.56
 ```
 
-2. Or, change the `rate` on website to see the result
+2. Or, change the `rate` on website to see the result.
+
+## Demo Site
+
+[https://baht.seedwebs.com/](https://baht.seedwebs.com/)
 
 ## Development
 
