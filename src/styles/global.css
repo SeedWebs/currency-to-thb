@@ -1,8 +1,6 @@
 @import 'tailwindcss';
-
 @plugin 'tailwindcss-animate';
 
-@custom-variant dark (&:is(.dark *));
 @layer base {
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
@@ -23,6 +21,9 @@ table {
 }
 tr {
   @apply transition-all duration-300;
+  .has_sub & {
+    @apply cursor-pointer;
+  }
 }
 th {
   @apply font-normal border-r border-b border-gray-600 w-1/2 items-center;
@@ -38,14 +39,16 @@ td {
 }
 th > div,
 td > div {
-  @apply max-h-0 overflow-hidden transition-all duration-300 flex items-center justify-center;
+  @apply max-h-0 overflow-hidden opacity-0 transition-all duration-300 flex items-center justify-center text-xs;
 }
-tr.active th,
-tr.active td {
-  @apply pt-4;
+tr.active {
+  th,
+  td {
+    @apply pt-4;
+  }
 }
 tr.active div {
-  @apply max-h-80  mt-0.5;
+  @apply max-h-80  mt-0.5 opacity-100 text-xl;
   height: calc((100dvh - 90px) / 10);
 }
 tr.active div:first-child {
