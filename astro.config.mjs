@@ -8,6 +8,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  adapter: cloudflare({
+    imageService: 'passthrough',
+  }),
   output: 'static',
-  adapter: cloudflare(),
 })
