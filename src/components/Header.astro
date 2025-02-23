@@ -3,16 +3,18 @@ const currency_from = 'USD'
 const currency_rate = 33.56
 ---
 
-<header class='flex items-center justify-center bg-[#023456] border-y border-gray-500 text-white'>
+<header class='flex items-center h-11 justify-center bg-[#023456] border-y border-gray-500 text-white'>
   <div class='flex justify-center'>
+    <label for='from' class='sr-only'>From Currency</label>
     <input type='text' id='from' class='block px-4 py-2 w-20 h-full uppercase' value={currency_from} />
   </div>
-  <div class='w-24 flex justify-center gap-2 items-center opacity-50'>
-    <svg class='h-full' width='14' height='44' viewBox='0 0 14 44' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <div class='w-24 flex justify-center gap-2 items-center text-gray-500'>
+    <svg class='h-[42px]' width='14' height='44' viewBox='0 0 14 44' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path d='M0.170898 0L13.0042 22L0.170898 44H0.995732L13.8291 22L0.995732 0H0.170898Z' fill='currentColor'></path>
     </svg>
-    <input type='number' id='rate' value={currency_rate} class='text-whitepx-4 py-2 px-0 w-12 text-center' />
-    <svg class='h-full' width='14' height='44' viewBox='0 0 14 44' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <label for='rate' class='sr-only'>Rate</label>
+    <input type='number' id='rate' value={currency_rate} class='text-white py-2 px-0 w-12 text-center' />
+    <svg class='h-[42px]' width='14' height='44' viewBox='0 0 14 44' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path d='M0.170898 0L13.0042 22L0.170898 44H0.995732L13.8291 22L0.995732 0H0.170898Z' fill='currentColor'></path>
     </svg>
   </div>

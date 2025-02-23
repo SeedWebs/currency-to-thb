@@ -13,7 +13,7 @@ body {
 }
 #content {
   @apply flex gap-2 overflow-y-hidden overflow-x-auto snap-x snap-mandatory scroll-smooth;
-  height: calc(100dvh - 72px);
+  height: calc(100dvh - 76px);
   -webkit-overflow-scrolling: touch;
 }
 table {

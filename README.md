@@ -1,6 +1,6 @@
-# KEE BAHT
+# Kee Baht (กี่บาท)
 
-KEE BAHT (กี่บาท) is a simple currency converter to Thai Baht.
+Kee Baht (กี่บาท) is a simple currency converter to Thai Baht.
 
 ## How to use?
 
