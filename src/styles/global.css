@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+@layer base {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+body {
+  @apply bg-gray-950 text-gray-200 overflow-hidden;
+}
+#content {
+  @apply flex gap-2 overflow-y-hidden overflow-x-auto snap-x snap-mandatory scroll-smooth;
+  height: calc(100dvh - 72px);
+  -webkit-overflow-scrolling: touch;
+}
+table {
+  @apply bg-gray-700 h-full min-w-full text-xl text-center border-x border-gray-500 snap-start;
+}
+tr {
+  @apply transition-all duration-300;
+}
+th {
+  @apply font-normal border-r border-b border-gray-600 w-1/2 items-center;
+  > div {
+    @apply bg-gray-800;
+  }
+}
+td {
+  @apply w-1/2 items-center border-b border-gray-500 bg-gray-600;
+  > div {
+    @apply bg-gray-700;
+  }
+}
+th > div,
+td > div {
+  @apply max-h-0 overflow-hidden transition-all duration-300 flex items-center justify-center;
+}
+tr.active th,
+tr.active td {
+  @apply pt-4;
+}
+tr.active div {
+  @apply max-h-80  mt-0.5;
+  height: calc((100dvh - 90px) / 10);
+}
+tr.active div:first-child {
+  @apply mt-4;
+}
+table:has(tr.active) tr:not(.active) {
+  @apply hidden;
+}

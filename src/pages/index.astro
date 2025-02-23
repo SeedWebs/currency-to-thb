@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout>
+  <Header />
+  <main id='content'>
+    <table>
+      <tbody id='list_1'></tbody>
+    </table>
+    <table class='has_sub'>
+      <tbody id='list_10'></tbody>
+    </table>
+    <table class='has_sub'>
+      <tbody id='list_100'></tbody>
+    </table>
+    <table class='has_sub'>
+      <tbody id='list_1K'></tbody>
+    </table>
+    <table class='has_sub'>
+      <tbody id='list_10K'></tbody>
+    </table>
+    <table class='has_sub'>
+      <tbody id='list_100K'></tbody>
+    </table>
+  </main>
+  <Footer />
+</Layout>
+
+<script is:inline>
+  const urlParams = new URLSearchParams(window.location.search)
+  const from = urlParams.get('from') ?? 'USD'
+  const rate = urlParams.get('rate') ?? 33.56
+  if (from) {
+    if (/^[a-zA-Z]{3}$/.test(from)) {
+      document.getElementById('from').value = from
+    } else {
+      document.getElementById('from').value = 'USD'
+    }
+  }
+  if (rate && !isNaN(rate)) {
+    document.getElementById('rate').value = rate
+  }
+  const lists = {
+    list_1: { multiplier: 1 },
+    list_10: { multiplier: 10 },
+    list_100: { multiplier: 100 },
+    list_1K: { multiplier: 1000 },
+    list_10K: { multiplier: 10000 },
+    list_100K: { multiplier: 100000 },
+  }
+
+  function generateList(listId, multiplier, rate) {
+    const list = document.getElementById(listId)
+    list.innerHTML = ''
+    for (let i = 1; i <= 10; i++) {
+      const tr = document.createElement('tr')
+      const th = document.createElement('th')
+      const td = document.createElement('td')
+      const value = i * multiplier
+      const result = value * rate
+      th.textContent = value.toLocaleString()
+      td.textContent = result > 1 ? Math.round(result).toLocaleString() : result.toFixed(2)
+      if (multiplier >= 10) {
+        const sub_value = multiplier / 10
+        for (let j = 1; j <= 9; j++) {
+          const th_div = document.createElement('div')
+          const td_div = document.createElement('div')
+          th_div.textContent = (value + sub_value * j).toLocaleString()
+          td_div.textContent = Math.round((value + sub_value * j) * rate).toLocaleString()
+          th.appendChild(th_div)
+          td.appendChild(td_div)
+        }
+      }
+      tr.appendChild(th)
+      tr.appendChild(td)
+      list.appendChild(tr)
+    }
+  }
+
+  function init(rate) {
+    Object.entries(lists).forEach(([listId, config]) => {
+      generateList(listId, config.multiplier, rate)
+    })
+    document.querySelectorAll('table.has_sub tr').forEach((tr) => {
+      tr.addEventListener('click', () => {
+        tr.classList.toggle('active')
+        document.querySelectorAll('table tr').forEach((otherTr) => {
+          if (otherTr !== tr) {
+            otherTr.classList.remove('active')
+          }
+        })
+      })
+    })
+  }
+
+  init(rate)
+
+  document.getElementById('rate').addEventListener('change', () => {
+    init(document.getElementById('rate').value)
+  })
+</script>
